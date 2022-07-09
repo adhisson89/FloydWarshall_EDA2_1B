@@ -1,13 +1,18 @@
-package FloydWarshall_EDA2_1B;
+package floydwarshall_eda2_1b;
 
 class FloydWarshall {
-
+    
+    MatrizGrafo matriz = new MatrizGrafo();
+    
+    private int graph[][] = matriz.getGraph();
+    private int nV = matriz.getNumeroVertices();
+    private int matrix[][] = new int[nV][nV];
     final static int INF = 9999;
     // Implementing floyd warshall algorithm
-    void floydWarshall(int graph[][], int nV) {
-      int matrix[][] = new int[nV][nV];
+    public void floydWarshall() {
+
       int i, j, k;
-  
+      
       for (i = 0; i < nV; i++)
         for (j = 0; j < nV; j++)
           matrix[i][j] = graph[i][j];
@@ -21,10 +26,11 @@ class FloydWarshall {
           }
         }
       }
-      printMatrix(matrix, nV);
+      matriz.setAdjacencyMatrix(matrix);
+      //printMatrix();
     }
   
-    void printMatrix(int matrix[][], int nV) {
+    void printMatrix() {
       for (int i = 0; i < nV; ++i) {
         for (int j = 0; j < nV; ++j) {
           if (matrix[i][j] == INF)
@@ -35,5 +41,9 @@ class FloydWarshall {
         System.out.println();
       }
     }
-  
+
+    public int[][] getMatrix() {
+        return matrix;
+    }
+    
   }
